@@ -1,0 +1,33 @@
+{
+  "configuracao": {
+    "id": 1,
+    "limite": 3000
+  },
+  "transacoes": [
+    {
+      "id": "1",
+      "descricao": "Salário Mensal",
+      "categoria": "Renda",
+      "tipo": "receita",
+      "valor": 3500,
+      "data": "2025-05-05"
+    },
+    {
+      "id": "2",
+      "descricao": "Conta de Luz",
+      "categoria": "Moradia",
+      "tipo": "despesa",
+      "valor": 150.5,
+      "data": "2025-05-10"
+    },
+    {
+      "descricao": "Merenda",
+      "tipo": "despesa",
+      "categoria": "Alimentação",
+      "valor": 100,
+      "data": "2026-08-06",
+      "id": "3"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
