@@ -22,6 +22,7 @@
     --cor-receita: #34c759;
     --cor-despesa: #ff3b30;
     --cor-alerta: #ff3b30;
+    --cor-editar: #ff9500;
     --cor-vermelha: #ff3b30;
 
     /* Cores padrão para cada categoria de gasto */
@@ -381,7 +382,8 @@ button.btn:hover { background: #333; }
     font-size: 15px; 
 }
 
-.btn-deletar {
+.btn-deletar,
+.btn-editar {
     background: none;
     border: none;
     color: #c7c7cc; 
@@ -396,6 +398,11 @@ button.btn:hover { background: #333; }
 
 .btn-deletar:hover {
     color: var(--cor-alerta);
+    background-color: rgba(255, 59, 48, 0.05);
+}
+
+.btn-editar:hover {
+    color: var(--cor-editar);
     background-color: rgba(255, 59, 48, 0.05);
 }
 

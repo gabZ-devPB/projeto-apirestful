@@ -2,7 +2,9 @@ import {
     adicionarTransacao,
     atualizarLimite,
     removerTransacao,
-    getLimiteGlobal
+    getLimiteGlobal,
+    editarTransacao,
+    getTransacoes
 } from "./app.js";
 
 function mostrarPopup(mensagem) {
@@ -28,6 +30,7 @@ const btnDespesa = document.getElementById("btnDespesa");
 const btnReceita = document.getElementById("btnReceita");
 
 let tipoSelecionado = "despesa";
+let idEditando = null;
 
 
 document.getElementById("btnNovaTransacao").addEventListener("click", () => {
@@ -109,10 +112,19 @@ document.getElementById("formTransacao").addEventListener("submit", async (e) =>
         data
     };
 
+if (idEditando) {
+
+    await editarTransacao(idEditando, novaTransacao);
+    idEditando = null;
+
+} else {
+
     await adicionarTransacao(novaTransacao);
+}
 
     e.target.reset();
     modalOverlay.classList.remove("active");
+    idEditando = null;
     tipoSelecionado = "despesa";
     btnDespesa.classList.add("active");
     btnReceita.classList.remove("active");
@@ -161,8 +173,47 @@ document.getElementById("formEditarLimite").addEventListener("submit", async (e)
 });
 
 document.getElementById("listaTransacoes").addEventListener("click", async (e) => {
+
+    const btnEditar = e.target.closest(".btn-editar");
+
+    if (btnEditar) {
+
+        const id = btnEditar.dataset.id;
+
+        const transacao = getTransacoes().find(t => t.id == id);
+
+        if (!transacao) return;
+
+        idEditando = id;
+
+        document.getElementById("descricao").value = transacao.descricao;
+        document.getElementById("categoria").value = transacao.categoria;
+        document.getElementById("valor").value = transacao.valor;
+        document.getElementById("data").value = transacao.data;
+
+        tipoSelecionado = transacao.tipo;
+
+        if (tipoSelecionado === "receita") {
+            btnReceita.classList.add("active");
+            btnDespesa.classList.remove("active");
+        } else {
+            btnDespesa.classList.add("active");
+            btnReceita.classList.remove("active");
+        }
+
+        modalOverlay.classList.add("active");
+
+        return;
+    }
+
     const btnDeletar = e.target.closest(".btn-deletar");
-    if (!btnDeletar) return;
-    const id = btnDeletar.dataset.id;
-    await removerTransacao(id);
+
+    if (btnDeletar) {
+
+        const id = btnDeletar.dataset.id;
+
+        await removerTransacao(id);
+
+    }
+
 });

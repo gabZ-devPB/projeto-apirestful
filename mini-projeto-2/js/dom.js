@@ -91,6 +91,25 @@ function HTMLhistorico(t, formatarData, corBase, corFundoTransparente, isReceita
                     </span>
 
                     <button
+                        class="btn-editar"
+                        data-id="${t.id}"
+                        title="Editar transação">
+
+                        <svg width="18" height="18" viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+
+                        </svg>
+
+                    </button>
+
+                    <button
                         class="btn-deletar"
                         data-id="${t.id}"
                         title="Excluir transação">

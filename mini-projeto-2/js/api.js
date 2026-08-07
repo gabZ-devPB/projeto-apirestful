@@ -21,6 +21,16 @@ export async function removerTransacaoAPI(id) {
     });
 }
 
+export async function editarTransacaoAPI(id, transacao) {
+    await fetch(`${API}/transacoes/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(transacao)
+    });
+}
+
 export async function buscarLimite() {
     const resposta = await fetch(`${API}/configuracao`);
     return await resposta.json();
