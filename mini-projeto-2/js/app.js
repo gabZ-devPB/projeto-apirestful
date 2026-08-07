@@ -15,7 +15,8 @@ import {
     adicionarTransacaoAPI,
     removerTransacaoAPI,
     buscarLimite,
-    atualizarLimiteAPI
+    atualizarLimiteAPI,
+    editarTransacaoAPI
 } from "./api.js";
 
 let limiteGlobal = 0;
@@ -72,6 +73,17 @@ export async function removerTransacao(id) {
     } catch (erro) {
         console.error(erro);
     }
+}
+
+export async function editarTransacao(id, transacaoAtualizada) {
+    try {
+        await editarTransacaoAPI(id, transacaoAtualizada);
+        listaDeTransacoes = await buscarTransacoes();
+        atualizarTelaPrincipal()
+    } catch (erro) {
+        console.error(erro);
+    }
+    
 }
 
 export function getLimiteGlobal() {
